@@ -1,0 +1,42 @@
+{
+
+
+
+
+
+
+
+    "specialization": {
+    },
+
+    "middleware": {
+
+        "shutdown": {
+            "enabled": true,
+            "priority": 0,
+            "module": {
+                "name": "kraken-js/middleware/shutdown",
+                "arguments": [{
+                    "timeout": 30000,
+                    "template": null,
+                    "shutdownHeaders": {
+                        "X-ROUTER-RETRY": "Server is shutting down."
+                    }
+                }]
+            }
+        },
+
+        "static": {
+            "module": {
+                "arguments": [ "path:./.build" ]
+            }
+        },
+
+        "router": {
+            "module": {
+                "arguments": [{ "directory": "path:./controllers" }]
+            }
+        }
+
+    }
+}
