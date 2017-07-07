@@ -2,8 +2,6 @@ node_modules
 coverage
 npm-debug.log
 
-index.js
-devserver/index.js
 *.eot
 *.ttf
 *.woff
