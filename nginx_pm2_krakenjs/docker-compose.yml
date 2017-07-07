@@ -6,10 +6,18 @@ nginx:
         - "pm2"
     ports:
         - "8080:8080"
-pm2:
+node1:
     build: ./krakenapp
-    container_name: "pm2"
+    container_name: "node1"
     ports:
         - "8000:8000"
+    environment:
+        - NODE_ENV=production
+
+node2:
+    build: ./krakenapp
+    container_name: "node2"
+    ports:
+        - "8001:8000"
     environment:
         - NODE_ENV=production
