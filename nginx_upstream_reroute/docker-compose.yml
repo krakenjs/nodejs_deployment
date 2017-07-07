@@ -1,0 +1,23 @@
+nginx:
+    build: ./nginx
+    container_name: "nginx"
+    command: /bin/bash -c "nginx -g 'daemon off;'"
+    links:
+        - "pm2"
+    ports:
+        - "8080:8080"
+node1:
+    build: ./krakenapp
+    container_name: "node1"
+    ports:
+        - "8000:8000"
+    environment:
+        - NODE_ENV=production
+
+node2:
+    build: ./krakenapp
+    container_name: "node2"
+    ports:
+        - "8001:8000"
+    environment:
+        - NODE_ENV=production
