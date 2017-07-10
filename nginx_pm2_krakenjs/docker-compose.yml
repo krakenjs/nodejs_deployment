@@ -13,3 +13,4 @@ pm2:
         - "8000:8000"
     environment:
         - NODE_ENV=production
+        - FAIL_RATE=5
