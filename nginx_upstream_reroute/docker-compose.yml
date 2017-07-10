@@ -1,23 +1,27 @@
 nginx:
     build: ./nginx
-    container_name: "nginx"
+    container_name: "nginx_upstream_reroute"
     command: /bin/bash -c "nginx -g 'daemon off;'"
     links:
-        - "pm2"
+        - "node1:node1"
+        - "node2:node2"
     ports:
         - "8080:8080"
 node1:
     build: ./krakenapp
-    container_name: "node1"
+    container_name: "node1_nginx_upstream_reroute"
     ports:
         - "8000:8000"
     environment:
         - NODE_ENV=production
-
+        - PORT=8000
+        - FAIL_RATE=5
 node2:
     build: ./krakenapp
-    container_name: "node2"
+    container_name: "node2_nginx_upstream_reroute"
     ports:
-        - "8001:8000"
+        - "8001:8001"
     environment:
         - NODE_ENV=production
+        - PORT=8001
+        - FAIL_RATE=5

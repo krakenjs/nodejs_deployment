@@ -1,6 +1,6 @@
 nginx:
     build: ./nginx
-    container_name: "nginx"
+    container_name: "nginx_pm2_wait_ready"
     command: /bin/bash -c "nginx -g 'daemon off;'"
     links:
         - "pm2"
@@ -8,8 +8,9 @@ nginx:
         - "8080:8080"
 pm2:
     build: ./krakenapp
-    container_name: "pm2"
+    container_name: "pm2_wait_ready"
     ports:
         - "8000:8000"
     environment:
         - NODE_ENV=production
+        - FAIL_RATE=5
